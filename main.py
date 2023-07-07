@@ -2,6 +2,10 @@ from random import randint
 
 
 def attack(char_name: str, char_class: str) -> str:
+    """Функция аттаки персонажа.
+
+    Вызывается в start_training
+    """
     if char_class == 'warrior':
         return (f'{char_name} нанёс урон противнику равный'
                 f'{5 + randint(3, 5)}')
@@ -14,6 +18,10 @@ def attack(char_name: str, char_class: str) -> str:
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """Функция защиты персонажа.
+
+    Вызывается в start_training
+    """
     if char_class == 'warrior':
         return (f'{char_name} блокировал {10 + randint(5, 10)} урона')
     if char_class == 'mage':
@@ -23,6 +31,13 @@ def defence(char_name: str, char_class: str) -> str:
 
 
 def special(char_name: str, char_class: str) -> str:
+    """Фунция специальных навыков.
+
+    Вызов происходит в функции start_training
+
+    char_name - имя которое ввели в main
+    char_class - класс персонажа
+    """
     if char_class == 'warrior':
         return (f'{char_name} применил специальное умение «Выносливость '
                 f'{80 + 25}»')
@@ -33,6 +48,22 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """Функция начала тренировки.
+
+    Из функции выбора сласса попадает переменная
+    выбранного класса
+
+    Условие:
+        выводить текст в соотвествии с выбранным классом
+
+    Переменная
+        cmd - переменная для хранения действия
+        print - вывод текста и фунции выбранного действия
+
+    Цикл while
+        Пока не введено skip выводи вырианты тренировки
+        Иначе тренировка окончена
+    """
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -57,6 +88,16 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
+    """Фукнция выбор класа.
+    Переменные:
+        approve_choice - поддверждение выбора игрок
+        char_class - выбранный класс
+    Условие:
+        Если выбран тот или иной класс
+        положить в переменную результат и вернуть его
+    Цикл:
+        пока не выбран класс, выводить варианты
+    """
     approve_choice: str = ''
     char_class: str = ''
     while approve_choice != 'y':
@@ -79,7 +120,11 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main():
+def main() -> None:
+    """Точка входа.
+    При запуске char_name просит ввести имя
+    В char_class складется выбранный класс
+    """
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name: str = input('...назови себя: ')
@@ -89,6 +134,3 @@ def main():
     print('Воитель, Маг, Лекарь')
     char_class: str = choice_char_class()
     print(start_training(char_name, char_class))
-
-
-main()
